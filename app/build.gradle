@@ -1,6 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
+    //kapt 플러그인 적용
+    id 'kotlin-kapt'
 }
 
 android {
@@ -29,6 +32,11 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    //DataBinding 설정
+    buildFeatures{
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -40,4 +48,12 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // 뷰모델(ViewModel)
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
+    // 라이브데이터(LiveData) - Observe패턴관련 - 데이터변경사항을 알 수 있음
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.4.1"
+    // 레트로핏(Retrofit)
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 }
