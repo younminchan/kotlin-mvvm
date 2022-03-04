@@ -41,6 +41,7 @@
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
             android:background="#F0F0F0"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_image" />

@@ -33,7 +33,7 @@ object RvBindingAdapter {
     fun loadImage(imageView: ImageView, url: String) {
         Log.e("YMC", "url: ${url}")
         Glide.with(imageView.context)
-            .load(url).override(100, 100).thumbnail(0.1f)
+            .load(url).override(200, 200).thumbnail(0.1f)
             .diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.ic_launcher_background)
             .dontAnimate().into(imageView)
     }
