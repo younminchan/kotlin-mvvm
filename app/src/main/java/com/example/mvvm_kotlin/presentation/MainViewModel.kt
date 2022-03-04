@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.mvvm_kotlin.data.PhotoData
 import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.repository.MainRepository
 import retrofit2.Call
@@ -14,15 +13,14 @@ import retrofit2.Response
 class MainViewModel: ViewModel() {
     private var repository = MainRepository()
 
-//    private val _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
-//    val searchResult : LiveData<ArrayList<PhotoDataItem>>
-//        get() = _searchResult
-    private val _searchResult = MutableLiveData<String>()
-    val searchResult : LiveData<String>
+    private val _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
+    val searchResult : LiveData<ArrayList<PhotoDataItem>>
         get() = _searchResult
+    private var photoItems = ArrayList<PhotoDataItem>()
 
     init {
-//        _searchResult.value = ArrayList<PhotoDataItem>
+        photoItems = arrayListOf()
+        _searchResult.value = arrayListOf()
     }
 
     fun searchCategory(category: String){
@@ -31,7 +29,9 @@ class MainViewModel: ViewModel() {
                 if(response.isSuccessful){
                     var res = response.body()
                     if(res!=null && res.size>0){
-                        _searchResult.value = res.toString()
+//                        _searchResult.value = res!!
+                        insertPhotoItems(res)
+                        Log.e("YMC", "res size: ${res.size}")
                     }
                 }
             }
@@ -40,5 +40,10 @@ class MainViewModel: ViewModel() {
                 t.printStackTrace()
             }
         })
+    }
+    fun insertPhotoItems(arr:ArrayList<PhotoDataItem>){
+        photoItems.clear()
+        photoItems.addAll(arr)
+        _searchResult.value = photoItems
     }
 }

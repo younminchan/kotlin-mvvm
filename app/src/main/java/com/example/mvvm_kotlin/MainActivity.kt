@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun searchClick(){
-        Log.e("YMC", "MainActivity searchClick")
-        mainViewModel.searchCategory("photos")
+        //검색어
+        mainViewModel.searchCategory("list")
     }
 }
