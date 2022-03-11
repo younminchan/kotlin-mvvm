@@ -35,12 +35,15 @@ class MainActivity : AppCompatActivity() {
 
     //데이터베이스
     fun selectDB(){
-        var test: ArrayList<RoomModel>? = null
+        var test: List<RoomModel>? = null
         CoroutineScope(Dispatchers.IO).launch {
             test = mainViewModel.selectDB()
-            Log.e("YMC", "test: ${test.toString()}")
+            for (item in test!!) {
+                Log.e("YMC", "test: ${item.id} / ${item.name} / ${item.age}")
+            }
+        }.run {
+            Toast.makeText(applicationContext, "SelectDB: $test", Toast.LENGTH_SHORT).show()
         }
-        Toast.makeText(applicationContext, "SelectDB: $test", Toast.LENGTH_SHORT).show()
     }
 
     fun insertDB() {
@@ -49,7 +52,7 @@ class MainActivity : AppCompatActivity() {
 
         if (name.isNotEmpty() && age.isNotEmpty()) {
             CoroutineScope(Dispatchers.IO).launch {
-                var insertRoomModel = RoomModel(name, age)
+                var insertRoomModel = RoomModel(0, name, age)
                 mainViewModel.insertDB(insertRoomModel)
             }
         } else {

@@ -10,7 +10,7 @@ import com.example.mvvm_kotlin.model.RoomModel
 interface RoomDao {
 
     @Query("SELECT * FROM mvvm")
-    fun getAll(): ArrayList<RoomModel>
+    fun getAll(): List<RoomModel>
 
     @Insert(onConflict = REPLACE)
     fun insert(roomModel: RoomModel)

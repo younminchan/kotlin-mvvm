@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "mvvm")
 class RoomModel(
-//    @PrimaryKey(autoGenerate = true) var id = 0 ,
-    @ColumnInfo(name = "name") var name: String?,
+    @PrimaryKey(autoGenerate = true) var id: Int,
+    @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "age") var age: String,
 ) {
-    @PrimaryKey(autoGenerate = true)
-    var id = 0
+//    @PrimaryKey(autoGenerate = true)
+//    var id = 0
 
-    constructor() : this("", "")
+    constructor() : this(0, "", "")
 }
