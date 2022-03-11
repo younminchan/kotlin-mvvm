@@ -12,6 +12,7 @@ import com.example.mvvm_kotlin.presentation.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -35,14 +36,26 @@ class MainActivity : AppCompatActivity() {
 
     //데이터베이스
     fun selectDB(){
-        var test: List<RoomModel>? = null
+        var items: List<RoomModel>? = null
         CoroutineScope(Dispatchers.IO).launch {
-            test = mainViewModel.selectDB()
-            for (item in test!!) {
+            var temp = mainViewModel.selectDB()
+
+            for (item in temp!!) {
                 Log.e("YMC", "test: ${item.id} / ${item.name} / ${item.age}")
             }
-        }.run {
-            Toast.makeText(applicationContext, "SelectDB: $test", Toast.LENGTH_SHORT).show()
+
+
+            /** Coroutine에서 처리할거 다 처리하고 Main스레드에서 처리할 내용들 처리!(ToastMessage 등) */
+            withContext(Dispatchers.Main){
+                Log.e("YMC", "2")
+                items = temp
+
+                var printItems = ""
+                for(item in items!!){
+                    printItems += "${item.id} / ${item.name} / ${item.age} \n"
+                }
+                Toast.makeText(applicationContext, "SelectDB:\n $printItems", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -59,4 +72,5 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(App.context, "Name, age 입력해주세요.", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
