@@ -47,7 +47,6 @@ class MainActivity : AppCompatActivity() {
 
             /** Coroutine에서 처리할거 다 처리하고 Main스레드에서 처리할 내용들 처리!(ToastMessage 등) */
             withContext(Dispatchers.Main){
-                Log.e("YMC", "2")
                 items = temp
 
                 var printItems = ""
@@ -56,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 Toast.makeText(applicationContext, "SelectDB:\n $printItems", Toast.LENGTH_SHORT).show()
             }
+
         }
     }
 
@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 var insertRoomModel = RoomModel(0, name, age)
                 mainViewModel.insertDB(insertRoomModel)
+
+                withContext(Dispatchers.Main){
+                    Toast.makeText(App.context, "RoomDB insert완료", Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
             Toast.makeText(App.context, "Name, age 입력해주세요.", Toast.LENGTH_SHORT).show()
