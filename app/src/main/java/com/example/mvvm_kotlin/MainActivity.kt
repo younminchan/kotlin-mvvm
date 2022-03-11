@@ -3,10 +3,15 @@ package com.example.mvvm_kotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm_kotlin.databinding.ActivityMainBinding
+import com.example.mvvm_kotlin.model.RoomModel
 import com.example.mvvm_kotlin.presentation.MainViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -23,8 +28,32 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewModel = mainViewModel
     }
 
+    //서버 통신
     fun searchClick(){
-        //검색어
         mainViewModel.searchCategory("list")
+    }
+
+    //데이터베이스
+    fun selectDB(){
+        var test: ArrayList<RoomModel>? = null
+        CoroutineScope(Dispatchers.IO).launch {
+            test = mainViewModel.selectDB()
+            Log.e("YMC", "test: ${test.toString()}")
+        }
+        Toast.makeText(applicationContext, "SelectDB: $test", Toast.LENGTH_SHORT).show()
+    }
+
+    fun insertDB() {
+        var name = binding.etName.text.toString()
+        var age = binding.etAge.text.toString()
+
+        if (name.isNotEmpty() && age.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                var insertRoomModel = RoomModel(name, age)
+                mainViewModel.insertDB(insertRoomModel)
+            }
+        } else {
+            Toast.makeText(App.context, "Name, age 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
     }
 }

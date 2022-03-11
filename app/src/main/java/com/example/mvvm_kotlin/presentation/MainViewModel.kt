@@ -4,21 +4,31 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mvvm_kotlin.App
+import com.example.mvvm_kotlin.dao.RoomDB
+import com.example.mvvm_kotlin.dao.RoomDao
 import com.example.mvvm_kotlin.data.PhotoDataItem
+import com.example.mvvm_kotlin.model.RoomModel
 import com.example.mvvm_kotlin.repository.MainRepository
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class MainViewModel: ViewModel() {
-    private var repository = MainRepository()
+    /** Repository */
+    var repository: MainRepository
+    /** Room */
+    private var roomDao = RoomDB.getInstance(App.context)!!.roomDao()
 
     private val _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
     val searchResult : LiveData<ArrayList<PhotoDataItem>>
         get() = _searchResult
+
     private var photoItems = ArrayList<PhotoDataItem>()
 
     init {
+        repository = MainRepository(roomDao)
+
         photoItems = arrayListOf()
         _searchResult.value = arrayListOf()
     }
@@ -45,5 +55,10 @@ class MainViewModel: ViewModel() {
         photoItems.clear()
         photoItems.addAll(arr)
         _searchResult.value = photoItems
+    }
+
+    fun selectDB() = repository.selectDB()
+    fun insertDB(roomModel: RoomModel){
+        repository.insertDB(roomModel)
     }
 }
