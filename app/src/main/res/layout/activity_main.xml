@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainActivity"
             type="com.example.mvvm_kotlin.MainActivity" />
@@ -24,6 +25,8 @@
             android:layout_height="wrap_content"
             android:background="@color/purple_200"
             android:gravity="center"
+            android:onClick='@{() -> mainActivity.changeLayout("retrofit")}'
+            android:padding="10dp"
             android:text="Retrofit"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -37,6 +40,8 @@
             android:layout_height="wrap_content"
             android:background="@color/purple_500"
             android:gravity="center"
+            android:onClick='@{() -> mainActivity.changeLayout("room")}'
+            android:padding="10dp"
             android:text="Room"
             android:textColor="@color/black"
             android:textSize="20dp"

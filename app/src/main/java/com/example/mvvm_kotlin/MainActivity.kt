@@ -3,6 +3,7 @@ package com.example.mvvm_kotlin
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -73,6 +74,16 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             Toast.makeText(App.context, "Name, age 입력해주세요.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    fun changeLayout(tab: String){
+        if(tab.equals("retrofit")){
+            binding.clRetrofit.visibility = View.VISIBLE
+            binding.clRoom.visibility = View.GONE
+        }else{
+            binding.clRetrofit.visibility = View.GONE
+            binding.clRoom.visibility = View.VISIBLE
         }
     }
 
