@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="mainActivity"
             type="com.example.mvvm_kotlin.MainActivity" />
@@ -19,77 +18,127 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <EditText
-            android:id="@+id/et_name"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tab_retrofit"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Name입력"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/purple_200"
+            android:gravity="center"
+            android:text="Retrofit"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/tab_room"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/et_age"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Age입력"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_name" />
-
         <TextView
-            android:id="@+id/tv_input"
+            android:id="@+id/tab_room"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#00F0F0"
+            android:background="@color/purple_500"
             android:gravity="center"
-            android:onClick="@{() -> mainActivity.insertDB()}"
-            android:padding="10dp"
-            android:text="User Room Insert!"
-            app:layout_constraintEnd_toStartOf="@+id/tv_select"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_age" />
-
-        <TextView
-            android:id="@+id/tv_select"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="#F0F000"
-            android:gravity="center"
-            android:onClick="@{() -> mainActivity.selectDB()}"
-            android:padding="10dp"
-            android:text="User Room Select!"
+            android:text="Room"
+            android:textColor="@color/black"
+            android:textSize="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_input"
-            app:layout_constraintTop_toBottomOf="@+id/et_age" />
+            app:layout_constraintStart_toEndOf="@+id/tab_retrofit"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/tv_search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#F0F0F0"
-            android:gravity="center"
-            android:onClick="@{() -> mainActivity.searchClick()}"
-            android:padding="20dp"
-            android:text="photos 검색"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_input" />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_result"
+        <!-- TODO: Retrofit -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_retrofit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_search"
-            app:rv_items="@{mainViewModel.searchResult}" />
+            app:layout_constraintTop_toBottomOf="@+id/tab_retrofit">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name입력"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Age입력"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_name" />
+
+            <TextView
+                android:id="@+id/tv_input"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#00F0F0"
+                android:gravity="center"
+                android:onClick="@{() -> mainActivity.insertDB()}"
+                android:padding="10dp"
+                android:text="User Room Insert!"
+                app:layout_constraintEnd_toStartOf="@+id/tv_select"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+            <TextView
+                android:id="@+id/tv_select"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="#F0F000"
+                android:gravity="center"
+                android:onClick="@{() -> mainActivity.selectDB()}"
+                android:padding="10dp"
+                android:text="User Room Select!"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_input"
+                app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- TODO: Room -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_room"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tab_retrofit">
+
+            <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="#F0F0F0"
+                android:gravity="center"
+                android:onClick="@{() -> mainActivity.searchClick()}"
+                android:padding="20dp"
+                android:text="photos 검색"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_result"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_search"
+                app:rv_items="@{mainViewModel.searchResult}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

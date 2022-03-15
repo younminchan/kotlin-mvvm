@@ -44,7 +44,6 @@ class MainActivity : AppCompatActivity() {
                 Log.e("YMC", "test: ${item.id} / ${item.name} / ${item.age}")
             }
 
-
             /** Coroutine에서 처리할거 다 처리하고 Main스레드에서 처리할 내용들 처리!(ToastMessage 등) */
             withContext(Dispatchers.Main){
                 items = temp
