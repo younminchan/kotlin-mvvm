@@ -47,8 +47,9 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.searchCategory("list")
     }
 
+    //Room 초기설정
     fun roomInit(){
-        var roomAdapter = RvRoomAdatper()
+        var roomAdapter = RvRoomAdatper(mainViewModel)
         binding.rvRoom.apply {
             layoutManager = LinearLayoutManager(App.activity)
             adapter = roomAdapter

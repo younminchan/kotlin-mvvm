@@ -17,4 +17,7 @@ class MainRepository(private var roomDao: RoomDao) {
     fun insertDB(roomModel: RoomModel){
         roomDao.insert(roomModel)
     }
+    fun deleteDB(roomModel: RoomModel){
+        roomDao.deleteItem(roomModel)
+    }
 }

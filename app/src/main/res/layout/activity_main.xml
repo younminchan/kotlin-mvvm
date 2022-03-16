@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="mainActivity"
             type="com.example.mvvm_kotlin.MainActivity" />
@@ -115,7 +116,7 @@
 
             <TextView
                 android:id="@+id/tv_input"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:background="#00F0F0"
@@ -123,23 +124,8 @@
                 android:onClick="@{() -> mainActivity.insertDB()}"
                 android:padding="10dp"
                 android:text="User Room Insert!"
-                app:layout_constraintEnd_toStartOf="@+id/tv_select"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/et_age" />
-
-            <TextView
-                android:id="@+id/tv_select"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#F0F000"
-                android:gravity="center"
-                android:padding="10dp"
-                android:text="User Room Select!"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tv_input"
-                app:layout_constraintTop_toBottomOf="@+id/et_age" />
-<!--            android:onClick="@{() -> mainActivity.selectDB()}"-->
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_room"

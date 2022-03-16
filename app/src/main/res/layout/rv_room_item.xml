@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="mainViewModel"
+            type="com.example.mvvm_kotlin.presentation.MainViewModel" />
         <variable
             name="item"
             type="com.example.mvvm_kotlin.model.RoomModel" />
@@ -45,6 +47,19 @@
             android:text="@{item.age}"
             android:textColor="#000000"
             app:layout_constraintStart_toEndOf="@+id/tv_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="age"
+            android:padding="10dp"
+            android:gravity="center"
+            android:text="X"
+            android:onClick="@{() -> mainViewModel.deleteDB(item)}"
+            android:textColor="#000000"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

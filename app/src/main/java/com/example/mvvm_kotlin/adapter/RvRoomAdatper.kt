@@ -7,13 +7,18 @@ import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.databinding.RvItemBinding
 import com.example.mvvm_kotlin.databinding.RvRoomItemBinding
 import com.example.mvvm_kotlin.model.RoomModel
+import com.example.mvvm_kotlin.presentation.MainViewModel
 
-class RvRoomAdatper() : RecyclerView.Adapter<RvRoomAdatper.MyViewHolder>() {
+class RvRoomAdatper(private var mainViewModel: MainViewModel) : RecyclerView.Adapter<RvRoomAdatper.MyViewHolder>() {
     var itemList = listOf<RoomModel>()
 
     class MyViewHolder(private val binding: RvRoomItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: RoomModel) {
+        fun bind(item: RoomModel, mainViewModel: MainViewModel) {
             binding.item = item
+            binding.mainViewModel = mainViewModel
+            binding.tvDelete.setOnClickListener {
+
+            }
         }
     }
 
@@ -23,7 +28,7 @@ class RvRoomAdatper() : RecyclerView.Adapter<RvRoomAdatper.MyViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind(itemList[position])
+        holder.bind(itemList[position], mainViewModel)
     }
 
     override fun getItemCount(): Int {

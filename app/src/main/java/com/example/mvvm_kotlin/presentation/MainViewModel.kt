@@ -68,6 +68,13 @@ class MainViewModel: ViewModel() {
 
 //    fun selectDB() = repository.selectDB()
     fun insertDB(roomModel: RoomModel){
-        repository.insertDB(roomModel)
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.insertDB(roomModel)
+        }
+    }
+    fun deleteDB(roomModel: RoomModel){
+        CoroutineScope(Dispatchers.IO).launch {
+            repository.deleteDB(roomModel)
+        }
     }
 }
