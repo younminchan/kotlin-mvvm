@@ -10,8 +10,5 @@ class RoomModel(
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "age") var age: String,
 ) {
-//    @PrimaryKey(autoGenerate = true)
-//    var id = 0
-
     constructor() : this(0, "", "")
 }

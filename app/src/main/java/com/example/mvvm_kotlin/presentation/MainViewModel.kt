@@ -23,17 +23,17 @@ class MainViewModel: ViewModel() {
     /** Room */
     private var roomDao = RoomDB.getInstance(App.context)!!.roomDao()
 
-    //검색결과
+    //Retrofit 관련
     private var _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
     val searchResult : LiveData<ArrayList<PhotoDataItem>>
         get() = _searchResult
+    //사진
+    private var photoItems = ArrayList<PhotoDataItem>()
 
-    //Room저장데이터
+    //Room 관련
     val roomResult : LiveData<List<RoomModel>>
         get() = repository.selectDB()
 
-    //사진
-    private var photoItems = ArrayList<PhotoDataItem>()
 
     init {
         repository = MainRepository(roomDao)
@@ -48,9 +48,7 @@ class MainViewModel: ViewModel() {
                 if(response.isSuccessful){
                     var res = response.body()
                     if(res!=null && res.size>0){
-//                        _searchResult.value = res!!
                         insertPhotoItems(res)
-                        Log.e("YMC", "res size: ${res.size}")
                     }
                 }
             }
@@ -66,7 +64,6 @@ class MainViewModel: ViewModel() {
         _searchResult.value = photoItems
     }
 
-//    fun selectDB() = repository.selectDB()
     fun insertDB(roomModel: RoomModel){
         CoroutineScope(Dispatchers.IO).launch {
             repository.insertDB(roomModel)

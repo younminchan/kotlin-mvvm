@@ -14,10 +14,7 @@ class MainRepository(private var roomDao: RoomDao) {
     }
 
     fun selectDB() = roomDao.getAll()
-    fun insertDB(roomModel: RoomModel){
-        roomDao.insert(roomModel)
-    }
-    fun deleteDB(roomModel: RoomModel){
-        roomDao.deleteItem(roomModel)
-    }
+    fun insertDB(roomModel: RoomModel) = roomDao.insert(roomModel)
+    fun deleteDB(roomModel: RoomModel) = roomDao.deleteItem(roomModel)
+
 }

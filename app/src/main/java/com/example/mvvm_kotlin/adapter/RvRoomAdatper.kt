@@ -16,9 +16,6 @@ class RvRoomAdatper(private var mainViewModel: MainViewModel) : RecyclerView.Ada
         fun bind(item: RoomModel, mainViewModel: MainViewModel) {
             binding.item = item
             binding.mainViewModel = mainViewModel
-            binding.tvDelete.setOnClickListener {
-
-            }
         }
     }
 

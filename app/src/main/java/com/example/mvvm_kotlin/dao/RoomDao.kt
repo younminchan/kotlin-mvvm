@@ -21,8 +21,10 @@ interface RoomDao {
     @Delete
     fun deleteItem(roomModel: RoomModel)
 
+    @Query("DELETE FROM mvvm WHERE id = :id")
+    fun deleteItem2(id: Int)
+
     @Query("DELETE FROM mvvm")
     fun deleteAll()
-
 
 }
