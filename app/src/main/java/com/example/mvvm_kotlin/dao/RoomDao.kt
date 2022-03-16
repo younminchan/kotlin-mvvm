@@ -1,5 +1,7 @@
 package com.example.mvvm_kotlin.dao
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
@@ -10,7 +12,7 @@ import com.example.mvvm_kotlin.model.RoomModel
 interface RoomDao {
 
     @Query("SELECT * FROM mvvm")
-    fun getAll(): List<RoomModel>
+    fun getAll(): LiveData<List<RoomModel>>
 
     @Insert(onConflict = REPLACE)
     fun insert(roomModel: RoomModel)

@@ -5,8 +5,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mvvm_kotlin.adapter.RvRoomAdatper
 import com.example.mvvm_kotlin.databinding.ActivityMainBinding
 import com.example.mvvm_kotlin.model.RoomModel
 import com.example.mvvm_kotlin.presentation.MainViewModel
@@ -32,6 +37,9 @@ class MainActivity : AppCompatActivity() {
         binding.mainActivity = this
         binding.mainViewModel = mainViewModel
 
+        //데이터베이스
+        roomInit()
+
     }
 
     //서버 통신
@@ -39,28 +47,18 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.searchCategory("list")
     }
 
-    //데이터베이스
-    fun selectDB(){
-        var items: List<RoomModel>? = null
-        CoroutineScope(Dispatchers.IO).launch {
-            var temp = mainViewModel.selectDB()
-
-            for (item in temp!!) {
-                Log.e("YMC", "test: ${item.id} / ${item.name} / ${item.age}")
-            }
-
-            /** Coroutine에서 처리할거 다 처리하고 Main스레드에서 처리할 내용들 처리!(ToastMessage 등) */
-            withContext(Dispatchers.Main){
-                items = temp
-
-                var printItems = ""
-                for(item in items!!){
-                    printItems += "${item.id} / ${item.name} / ${item.age} \n"
-                }
-                Toast.makeText(applicationContext, "SelectDB:\n $printItems", Toast.LENGTH_SHORT).show()
-            }
-
+    fun roomInit(){
+        var roomAdapter = RvRoomAdatper()
+        binding.rvRoom.apply {
+            layoutManager = LinearLayoutManager(App.activity)
+            adapter = roomAdapter
+//            setHasFixedSize(true)
         }
+        mainViewModel.roomResult.observe(this, Observer {
+            Log.e("YMC", "it: $it")
+            roomAdapter.setItem(it)
+//            roomAdapter.notifyDataSetChanged()
+        })
     }
 
     fun insertDB() {

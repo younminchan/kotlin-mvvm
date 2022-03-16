@@ -10,6 +10,9 @@ import com.example.mvvm_kotlin.dao.RoomDao
 import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.model.RoomModel
 import com.example.mvvm_kotlin.repository.MainRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,10 +23,16 @@ class MainViewModel: ViewModel() {
     /** Room */
     private var roomDao = RoomDB.getInstance(App.context)!!.roomDao()
 
-    private val _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
+    //검색결과
+    private var _searchResult = MutableLiveData<ArrayList<PhotoDataItem>>()
     val searchResult : LiveData<ArrayList<PhotoDataItem>>
         get() = _searchResult
 
+    //Room저장데이터
+    val roomResult : LiveData<List<RoomModel>>
+        get() = repository.selectDB()
+
+    //사진
     private var photoItems = ArrayList<PhotoDataItem>()
 
     init {
@@ -57,7 +66,7 @@ class MainViewModel: ViewModel() {
         _searchResult.value = photoItems
     }
 
-    fun selectDB() = repository.selectDB()
+//    fun selectDB() = repository.selectDB()
     fun insertDB(roomModel: RoomModel){
         repository.insertDB(roomModel)
     }

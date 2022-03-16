@@ -53,7 +53,7 @@
             android:id="@+id/cl_retrofit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_search"
-                app:rv_items="@{mainViewModel.searchResult}" />
+                app:rv_retrofit_items="@{mainViewModel.searchResult}" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -89,7 +89,7 @@
             android:id="@+id/cl_room"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -134,12 +134,22 @@
                 android:layout_margin="10dp"
                 android:background="#F0F000"
                 android:gravity="center"
-                android:onClick="@{() -> mainActivity.selectDB()}"
                 android:padding="10dp"
                 android:text="User Room Select!"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tv_input"
                 app:layout_constraintTop_toBottomOf="@+id/et_age" />
+<!--            android:onClick="@{() -> mainActivity.selectDB()}"-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_room"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_input" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

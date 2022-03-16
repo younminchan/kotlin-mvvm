@@ -5,18 +5,20 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.databinding.RvItemBinding
+import com.example.mvvm_kotlin.databinding.RvRoomItemBinding
+import com.example.mvvm_kotlin.model.RoomModel
 
-class RvAdatper() : RecyclerView.Adapter<RvAdatper.MyViewHolder>() {
-    var itemList = arrayListOf<PhotoDataItem>()
+class RvRoomAdatper() : RecyclerView.Adapter<RvRoomAdatper.MyViewHolder>() {
+    var itemList = listOf<RoomModel>()
 
-    class MyViewHolder(private val binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PhotoDataItem) {
+    class MyViewHolder(private val binding: RvRoomItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: RoomModel) {
             binding.item = item
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = RvItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = RvRoomItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
@@ -34,5 +36,10 @@ class RvAdatper() : RecyclerView.Adapter<RvAdatper.MyViewHolder>() {
      * */
     override fun getItemId(position: Int): Long {
         return position.toLong()
+    }
+
+    fun setItem(items: List<RoomModel>){
+        itemList = items
+        notifyDataSetChanged()
     }
 }
