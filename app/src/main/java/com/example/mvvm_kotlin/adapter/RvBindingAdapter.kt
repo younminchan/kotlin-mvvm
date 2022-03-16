@@ -12,7 +12,6 @@ import com.example.mvvm_kotlin.R
 import com.example.mvvm_kotlin.data.PhotoDataItem
 
 object RvBindingAdapter {
-
     @BindingAdapter("rv_items")
     @JvmStatic
     fun rv_items(recyclerView: RecyclerView, items: ArrayList<PhotoDataItem>){

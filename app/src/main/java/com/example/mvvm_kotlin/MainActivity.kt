@@ -1,10 +1,10 @@
 package com.example.mvvm_kotlin
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.mvvm_kotlin.databinding.ActivityMainBinding
@@ -24,10 +24,14 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        // 상단바 없애기
+        supportActionBar?.hide()
+
         // 데이터바인딩(DataBinding)설정
         binding.lifecycleOwner = this //데이터바인딩 Lifecycle에 종속, LifeCycle_Observe역할
         binding.mainActivity = this
         binding.mainViewModel = mainViewModel
+
     }
 
     //서버 통신
