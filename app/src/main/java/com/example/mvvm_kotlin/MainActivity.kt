@@ -48,17 +48,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Room 초기설정
-    fun roomInit(){
+    fun roomInit() {
         var roomAdapter = RvRoomAdatper(mainViewModel)
         binding.rvRoom.apply {
             layoutManager = LinearLayoutManager(App.activity)
             adapter = roomAdapter
-//            setHasFixedSize(true)
+            setHasFixedSize(true)
         }
         mainViewModel.roomResult.observe(this, Observer {
-            Log.e("YMC", "it: $it")
             roomAdapter.setItem(it)
-//            roomAdapter.notifyDataSetChanged()
         })
     }
 
