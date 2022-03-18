@@ -27,10 +27,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+//        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        mainViewModel = MainViewModel.getInstance("viewModel")
 
         // 상단바 없애기
-        supportActionBar?.hide()
+//        supportActionBar?.hide()
 
         // 데이터바인딩(DataBinding)설정
         binding.lifecycleOwner = this //데이터바인딩 Lifecycle에 종속, LifeCycle_Observe역할

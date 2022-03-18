@@ -1,6 +1,7 @@
 package com.example.mvvm_kotlin.presentation
 
 import android.util.Log
+import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,7 +18,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel(userId: String): ViewModel() {
     /** Repository */
     var repository: MainRepository
     /** Room */
@@ -72,6 +73,17 @@ class MainViewModel: ViewModel() {
     fun deleteDB(roomModel: RoomModel){
         CoroutineScope(Dispatchers.IO).launch {
             repository.deleteDB(roomModel)
+        }
+    }
+
+    /** ViewModel Singleton */
+    companion object{
+        private lateinit var instance: MainViewModel
+
+        @MainThread
+        fun getInstance(userId: String): MainViewModel{
+            instance = if(::instance.isInitialized) instance else MainViewModel(userId)
+            return instance
         }
     }
 }

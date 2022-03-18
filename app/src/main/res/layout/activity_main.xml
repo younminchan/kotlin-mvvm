@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="mainActivity"
             type="com.example.mvvm_kotlin.MainActivity" />
@@ -54,7 +53,7 @@
             android:id="@+id/cl_retrofit"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +89,7 @@
             android:id="@+id/cl_room"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
