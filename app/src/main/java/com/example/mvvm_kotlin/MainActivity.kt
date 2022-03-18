@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     //서버 통신
-    fun searchClick(){
+    fun searchClick() {
         mainViewModel.searchCategory("list")
     }
 
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
                 var insertRoomModel = RoomModel(0, name, age)
                 mainViewModel.insertDB(insertRoomModel)
 
-                withContext(Dispatchers.Main){
+                withContext(Dispatchers.Main) {
                     Toast.makeText(App.context, "RoomDB insert완료", Toast.LENGTH_SHORT).show()
                 }
             }
