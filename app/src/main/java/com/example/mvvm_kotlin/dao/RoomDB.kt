@@ -16,8 +16,7 @@ abstract class RoomDB: RoomDatabase() {
         fun getInstance(context: Context): RoomDB? {
             if (INSTANCE == null) {
                 synchronized(RoomDB::class) {
-                    INSTANCE = Room.databaseBuilder(context.applicationContext, RoomDB::class.java, "room.db")
-                        .build()
+                    INSTANCE = Room.databaseBuilder(context.applicationContext, RoomDB::class.java, "room.db").build()
                 }
             }
             return INSTANCE
