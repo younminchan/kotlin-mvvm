@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+
+        //(중요)이걸로 사용하기
 //        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel = MainViewModel.getInstance("viewModel")
 
