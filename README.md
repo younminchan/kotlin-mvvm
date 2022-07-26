@@ -12,6 +12,6 @@
 # AAC(android Architecture components)
 ![image](https://user-images.githubusercontent.com/14201479/156711399-b38e9f5c-10f9-49fe-b979-75cd5cb78989.png)  
 
-# MVVM(Model - View - ViewModel)
+# MVVM(Model - View - ViewModel) 디자인패턴
 ![image](https://user-images.githubusercontent.com/14201479/160032727-aceec0b6-cca4-4ba9-b8fd-595696198840.png)  
 
