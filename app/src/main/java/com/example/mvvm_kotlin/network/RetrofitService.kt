@@ -37,10 +37,18 @@ interface RetrofitService {
         /** 비어있는(length=0)인 Response를 받았을 경우 처리 */
         private val nullOnEmptyConverterFactory = object : Converter.Factory() {
             fun converterFactory() = this
-            override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>, retrofit: Retrofit) = object :
-                Converter<ResponseBody, Any?> {
+            override fun responseBodyConverter(type: Type, annotations: Array<out Annotation>, retrofit: Retrofit) = object : Converter<ResponseBody, Any?> {
                 val nextResponseBodyConverter = retrofit.nextResponseBodyConverter<Any?>(converterFactory(), type, annotations)
-                override fun convert(value: ResponseBody) = if (value.contentLength() != 0L) nextResponseBodyConverter.convert(value) else null
+                override fun convert(value: ResponseBody) = if (value.contentLength() != 0L) {
+                    try{
+                        nextResponseBodyConverter.convert(value)
+                    }catch (e:Exception){
+                        e.printStackTrace()
+                        null
+                    }
+                } else{
+                    null
+                }
             }
         }
     }
