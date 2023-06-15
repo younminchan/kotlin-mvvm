@@ -81,11 +81,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun changeLayout(tab: String){
-        if(tab.equals("retrofit")){
+    fun changeLayout(tab: String) {
+        if (tab.equals("retrofit")) {
             binding.clRetrofit.visibility = View.VISIBLE
             binding.clRoom.visibility = View.GONE
-        }else{
+        } else {
             binding.clRetrofit.visibility = View.GONE
             binding.clRoom.visibility = View.VISIBLE
         }

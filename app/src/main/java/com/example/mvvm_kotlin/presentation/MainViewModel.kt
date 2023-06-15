@@ -1,13 +1,11 @@
 package com.example.mvvm_kotlin.presentation
 
-import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mvvm_kotlin.App
 import com.example.mvvm_kotlin.dao.RoomDB
-import com.example.mvvm_kotlin.dao.RoomDao
 import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.model.RoomModel
 import com.example.mvvm_kotlin.repository.MainRepository
@@ -46,9 +44,9 @@ class MainViewModel(userId: String): ViewModel() {
     fun searchCategory(category: String){
         repository.network_getPlaceholder(category).enqueue(object : Callback<ArrayList<PhotoDataItem>> {
             override fun onResponse(call: Call<ArrayList<PhotoDataItem>>, response: Response<ArrayList<PhotoDataItem>>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     var res = response.body()
-                    if(res!=null && res.size>0){
+                    if (res != null && res.size > 0) {
                         insertPhotoItems(res)
                     }
                 }

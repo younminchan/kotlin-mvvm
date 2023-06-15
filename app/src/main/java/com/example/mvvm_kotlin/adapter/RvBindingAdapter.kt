@@ -21,12 +21,12 @@ object RvBindingAdapter {
     fun rv_retrofit_items(recyclerView: RecyclerView, items: ArrayList<PhotoDataItem>){
         if(recyclerView.adapter == null){
             recyclerView.layoutManager = LinearLayoutManager(App.activity)
-            val myAdapter = RvRetrofitAdatper()
+            val myAdapter = RvRetrofitAdapter()
             recyclerView.adapter = myAdapter
 //            myAdapter.setHasStableIds(true)
         }
 
-        val myAdapter = recyclerView.adapter as RvRetrofitAdatper
+        val myAdapter = recyclerView.adapter as RvRetrofitAdapter
         myAdapter.itemList = items
         myAdapter.notifyDataSetChanged()
     }

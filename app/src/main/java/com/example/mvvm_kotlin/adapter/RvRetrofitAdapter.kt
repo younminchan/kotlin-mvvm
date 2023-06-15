@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mvvm_kotlin.data.PhotoDataItem
 import com.example.mvvm_kotlin.databinding.RvItemBinding
 
-class RvRetrofitAdatper() : RecyclerView.Adapter<RvRetrofitAdatper.MyViewHolder>() {
+class RvRetrofitAdapter : RecyclerView.Adapter<RvRetrofitAdapter.MyViewHolder>() {
     var itemList = arrayListOf<PhotoDataItem>()
 
     class MyViewHolder(private val binding: RvItemBinding) : RecyclerView.ViewHolder(binding.root) {
